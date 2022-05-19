@@ -22,9 +22,10 @@ const pageCache = new CacheFirst({
 warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
+            assetCache
 });
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
-registerRoute();
+// asset caching
+registerRoute(({ request }) => request.mode === 'navigate', assetCache);
